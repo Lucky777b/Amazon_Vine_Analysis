@@ -20,15 +20,15 @@ The purpose of this project was to perform an analysis on Amazon reviews written
 
 The steps taken to be able to perform this analysis using an ETL process: 
 
-1. Write schema in PostgreSQL and run query to create 4 tables: 'customer_tables', 'products_table', 'review_id_table', 'vine_table'. 
+*** 1. Write schema in PostgreSQL and run query to create 4 tables: 'customer_tables', 'products_table', 'review_id_table', 'vine_table'. ***
 
 ![SQL Tables](https://github.com/Lucky777b/Amazon_Vine_Analysis/blob/main/Resources/SQL_create_tables.png)
 
-2. Extract an Amazon Review dataset into the Amazon Colaboratory notebook using PySpark.
+*** 2. Extract an Amazon Review dataset into the Amazon Colaboratory notebook using PySpark. ***
 
 ![Extract](https://github.com/Lucky777b/Amazon_Vine_Analysis/blob/main/Resources/extract_dataset_pyspark.png)
 
-3. Transform the data using PySpark functions
+*** 3. Transform the data using PySpark functions ***
 
    a. To create the 'customer_table_df' dataframe, I used the groupby() function on the 'customer_id' column, and then chained the agg() function to my groupby() function, which created a new column, 'count(customer_id)'. The agg() function was used to count all the customer ids. Then, I had to rename the 'count(customer_id)' column using the withColumnRenamed() function, so that the column name would match the schema created in pgAdmin. 
 
@@ -47,11 +47,11 @@ The steps taken to be able to perform this analysis using an ETL process:
 ![vine_df](https://github.com/Lucky777b/Amazon_Vine_Analysis/blob/main/Resources/vine_df.png)
 
 
-4. Connect to an AWS RDS instance
+*** 4. Connect to an AWS RDS instance ***
 
 In order to connect to my AWS RDS instance, I had to create a database on AWS Free Tier, and then retrieve an endpoint link, which was used in the 'jdbc_url' connection string to the database. 
 
-5. Load the transformed data into tables in pgAdmin
+*** 5. Load the transformed data into tables in pgAdmin ***
 
 By using the '.write.jdbc' method, that takes in certain parameters, I was able to take the cleaned dataframes and write them directly to my PostgreSQL database in pgAdmin. 
 
@@ -68,7 +68,7 @@ Then, I verified that the tables were loaded into my pgAdmin database using 'SEL
 ![vine_table](https://github.com/Lucky777b/Amazon_Vine_Analysis/blob/main/Resources/vine_table.png)
 
 
-6. Use Pandas to determine whether there is any bias towards favorable reviews from Vine members in the dataset. 
+*** 6. Use Pandas to determine whether there is any bias towards favorable reviews from Vine members in the dataset. ***
 
 Then, I created a new .ipynb file in jupyter notebook, and used Pandas to filter my dataframe that I could then use to form conclusions about a possible bias on star ratings provided by paid vine members and unpaid amazon product reviewers. 
 
